@@ -255,7 +255,38 @@ class Elements:
             "Xe": "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6",
             "Rn": "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6"
         }
+    # Densities of elements at STP (in g/cm³)
+        self.densities = {
+            "H": 0.00008988, "He": 0.0001785, "Li": 0.534, "Be": 1.85, "B": 2.34,
+            "C": 2.267, "N": 0.0012506, "O": 0.001429, "F": 0.001696, "Ne": 0.0008999,
+            "Na": 0.971, "Mg": 1.738, "Al": 2.70, "Si": 2.329, "P": 1.82,
+            "S": 2.067, "Cl": 0.003214, "Ar": 0.0017837, "K": 0.862, "Ca": 1.54,
+            "Sc": 2.989, "Ti": 4.54, "V": 6.11, "Cr": 7.19, "Mn": 7.3,
+            "Fe": 7.874, "Co": 8.9, "Ni": 8.908, "Cu": 8.96, "Zn": 7.14,
+            "Ga": 5.91, "Ge": 5.323, "As": 5.776, "Se": 4.809, "Br": 3.122,
+            "Kr": 0.003733, "Rb": 1.532, "Sr": 2.64, "Y": 4.469, "Zr": 6.52,
+            "Nb": 8.57, "Mo": 10.28, "Tc": 11, "Ru": 12.37, "Rh": 12.41,
+            "Pd": 12.02, "Ag": 10.49, "Cd": 8.65, "In": 7.31, "Sn": 7.287,
+            "Sb": 6.685, "Te": 6.232, "I": 4.933, "Xe": 0.005887, "Cs": 1.873,
+            "Ba": 3.62, "La": 6.145, "Ce": 6.77, "Pr": 6.773, "Nd": 7.007,
+            "Pm": 7.26, "Sm": 7.52, "Eu": 5.243, "Gd": 7.895, "Tb": 8.23,
+            "Dy": 8.55, "Ho": 8.795, "Er": 9.066, "Tm": 9.321, "Yb": 6.965,
+            "Lu": 9.84, "Hf": 13.31, "Ta": 16.69, "W": 19.25, "Re": 21.02,
+            "Os": 22.59, "Ir": 22.56, "Pt": 21.45, "Au": 19.32, "Hg": 13.534,
+            "Tl": 11.85, "Pb": 11.34, "Bi": 9.78, "Po": 9.32, "At": None,
+            "Rn": 0.00973, "Fr": None, "Ra": 5.5, "Ac": 10.07, "Th": 11.72,
+            "Pa": 15.37, "U": 18.95, "Np": 20.25, "Pu": 19.84, "Am": 13.67,
+            "Cm": 13.51, "Bk": 14, "Cf": 15.1, "Es": None, "Fm": None,
+            "Md": None, "No": None, "Lr": None, "Rf": None, "Db": None,
+            "Sg": None, "Bh": None, "Hs": None, "Mt": None, "Ds": None,
+            "Rg": None, "Cn": None, "Nh": None, "Fl": None, "Mc": None,
+            "Lv": None, "Ts": None, "Og": None
+        }
 
+    def get_density(self, symbol):
+        """Get the density of an element."""
+        return self.densities.get(symbol, "Unknown")
+    
     # Method to get atomic mass
     def get_atomic_mass(self, symbol):
         """Get the atomic mass of an element."""

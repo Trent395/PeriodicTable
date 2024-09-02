@@ -171,7 +171,7 @@ class PeriodicTableApp(tk.Tk):
 
         search_button = ttk.Button(search_frame, text="Search", command=self.search_element)
         search_button.pack(side=tk.LEFT, padx=5)
-        search_button.config(height=1)  # Match the search button height with the entry box
+
 
 
 if __name__ == "__main__":
