@@ -304,9 +304,6 @@ class Elements:
         """Get the electronegativity of an element."""
         return self.electronegativities.get(symbol, "Unknown")
 
-    def get_density(self, symbol):
-        """Get the density of an element."""
-        # Add a similar method for density, assuming you have a density dictionary
         
     def get_element_position(self, symbol):
         """Get the position of an element in the periodic table."""
