@@ -105,19 +105,16 @@ class Elements:
             "Os": "transition_metal", "Ir": "transition_metal", "Pt": "transition_metal", "Au": "transition_metal",
             "Hg": "transition_metal", "Tl": "metal", "Pb": "metal", "Bi": "metal", "Po": "metalloid", "At": "halogen",
             "Rn": "noble_gas", "Fr": "alkali_metal", "Ra": "alkaline_earth_metal", "Ac": "actinide", "Th": "actinide",
-            "Pa": "actinide", "U": "actinide", "Np": "actinide", "Pu": "actinide", 
-            "Am": "actinide", "Cm": "actinide", "Bk": "actinide", "Cf": "actinide", 
-            "Es": "actinide", "Fm": "actinide", "Md": "actinide", "No": "actinide", 
-            "Lr": "actinide", "Rf": "transition_metal", "Db": "transition_metal", 
-            "Sg": "transition_metal", "Bh": "transition_metal", "Hs": "transition_metal", 
-            "Mt": "transition_metal", "Ds": "transition_metal", "Rg": "transition_metal", 
+            "Pa": "actinide", "U": "actinide", "Np": "actinide", "Pu": "actinide", "Am": "actinide", "Cm": "actinide", 
+            "Bk": "actinide", "Cf": "actinide", "Es": "actinide", "Fm": "actinide", "Md": "actinide", "No": "actinide", 
+            "Lr": "actinide", "Rf": "transition_metal", "Db": "transition_metal", "Sg": "transition_metal", "Bh": "transition_metal", 
+            "Hs": "transition_metal", "Mt": "transition_metal", "Ds": "transition_metal", "Rg": "transition_metal", 
             "Cn": "transition_metal", "Nh": "metal", "Fl": "metal", "Mc": "metal", 
             "Lv": "metal", "Ts": "halogen", "Og": "noble_gas"
         }
     # Atomic masses for each element
         self.atomic_masses = {
-            "H": 1.008, "He": 4.0026,
-            "Li": 6.94, "Be": 9.0122, "B": 10.81, "C": 12.011, "N": 14.007, "O": 15.999, "F": 18.998, "Ne": 20.180,
+            "H": 1.008, "He": 4.0026, "Li": 6.94, "Be": 9.0122, "B": 10.81, "C": 12.011, "N": 14.007, "O": 15.999, "F": 18.998, "Ne": 20.180,
             "Na": 22.990, "Mg": 24.305, "Al": 26.982, "Si": 28.085, "P": 30.974, "S": 32.06, "Cl": 35.45, "Ar": 39.948,
             "K": 39.098, "Ca": 40.078, "Sc": 44.956, "Ti": 47.867, "V": 50.942, "Cr": 51.996, "Mn": 54.938, "Fe": 55.845,
             "Co": 58.933, "Ni": 58.693, "Cu": 63.546, "Zn": 65.38, "Ga": 69.723, "Ge": 72.63, "As": 74.922, "Se": 78.96,
@@ -147,8 +144,24 @@ class Elements:
             "Md": 1.30, "No": 1.30, "Lr": None, "Rf": None, "Db": None, "Sg": None, "Bh": None, "Hs": None, "Mt": None, "Ds": None,
             "Rg": None, "Cn": None, "Nh": None, "Fl": None, "Mc": None, "Lv": None, "Ts": None, "Og": None
         }
-    
-        #Oxidation States
+
+        # Normal bond limits for all elements (1-118)
+        self.normal_bond_limit = {
+            "H": 1, "He": 0, "Li": 1, "Be": 2, "B": 3, "C": 4, "N": 3, "O": 2, "F": 1, "Ne": 0,
+            "Na": 1, "Mg": 2, "Al": 3, "Si": 4, "P": 3, "S": 2, "Cl": 1, "Ar": 0, "K": 1, "Ca": 2,
+            "Sc": 3, "Ti": 4, "V": 5, "Cr": 6, "Mn": 7, "Fe": 6, "Co": 5, "Ni": 4, "Cu": 2, "Zn": 2,
+            "Ga": 3, "Ge": 4, "As": 3, "Se": 2, "Br": 1, "Kr": 0, "Rb": 1, "Sr": 2, "Y": 3, "Zr": 4,
+            "Nb": 5, "Mo": 6, "Tc": 7, "Ru": 6, "Rh": 5, "Pd": 4, "Ag": 1, "Cd": 2, "In": 3, "Sn": 4,
+            "Sb": 3, "Te": 2, "I": 1, "Xe": 0, "Cs": 1, "Ba": 2, "La": 3, "Ce": 4, "Pr": 3, "Nd": 3,
+            "Pm": 3, "Sm": 3, "Eu": 2, "Gd": 3, "Tb": 3, "Dy": 3, "Ho": 3, "Er": 3, "Tm": 3, "Yb": 2,
+            "Lu": 3, "Hf": 4, "Ta": 5, "W": 6, "Re": 7, "Os": 6, "Ir": 6, "Pt": 4, "Au": 3, "Hg": 2,
+            "Tl": 3, "Pb": 4, "Bi": 3, "Po": 2, "At": 1, "Rn": 0, "Fr": 1, "Ra": 2, "Ac": 3, "Th": 4,
+            "Pa": 5, "U": 6, "Np": 7, "Pu": 6, "Am": 6, "Cm": 6, "Bk": 6, "Cf": 6, "Es": 6, "Fm": 6,
+            "Md": 6, "No": 6, "Lr": 3, "Rf": 4, "Db": 5, "Sg": 6, "Bh": 7, "Hs": 6, "Mt": 6, "Ds": 6,
+            "Rg": 1, "Cn": 2, "Nh": 3, "Fl": 4, "Mc": 3, "Lv": 4, "Ts": 1, "Og": 0
+        }
+
+        # Oxidation States - not sure about validity
         self.oxidation_states = {
             "H": [-1, 1], "He": [0], "Li": [1], "Be": [2], "B": [3], "C": [-4, -3, -2, -1, 0, 1, 2, 3, 4], 
             "N": [-3, -2, -1, 0, 1, 2, 3, 4, 5], "O": [-2, -1, 0, 1, 2], "F": [-1], "Ne": [0],
@@ -321,8 +334,9 @@ class Elements:
     def get_electron_configuration(self, symbol):
         """Get the electron configuration of an element."""
         return self.get_full_electron_configuration(symbol)
-    # Test
+    
 
+    # Test
     def print_properties(self, symbol):
         """Print properties of a given element by symbol."""
         print(f"Name: {self.element_names.get(symbol, 'Unknown')}")
@@ -352,4 +366,4 @@ class Elements:
 elements = Elements()
 
 # Print properties of Gold
-elements.print_properties("Au")
+#elements.print_properties("Au")

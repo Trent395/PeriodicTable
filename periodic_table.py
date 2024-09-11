@@ -1,14 +1,14 @@
 
 import tkinter as tk
 from tkinter import ttk, messagebox
-from Elements import Elements
+from elements import Elements
 
 class PeriodicTableApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Modern Periodic Table")
         self.geometry("1600x900")  # Increase window width for better spacing
-        self.configure(bg="#2e2e2e")  # Dark background
+        self.configure(bg="#2e2e2e")  # Dark background #make this use dark mode class
 
         # Initialize the Elements class
         self.elements = Elements()
