@@ -1,9 +1,8 @@
-# periodic_table_v2.py
-# rebuild of periodic table program with pyqt5 instead of tkinter
 import sys
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QGridLayout, QLabel, QVBoxLayout, QLineEdit, QMessageBox)
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtGui import QFont
+from dark_mode_manager import DarkModeManager  # Import the dark mode manager
 from elements import Elements  # Assuming this is the same Elements class from before
 
 class PeriodicTableApp(QWidget):
@@ -16,9 +15,13 @@ class PeriodicTableApp(QWidget):
         # Initialize the Elements class
         self.elements = Elements()
 
+        # Initialize DarkModeManager and apply dark mode
+        self.dark_mode_manager = DarkModeManager()
+        self.dark_mode_manager.apply_palette()
+
         # Set up the grid layout for the periodic table
         self.grid_layout = QGridLayout()
-        self.grid_layout.setSpacing(10)
+        self.grid_layout.setSpacing(5)
 
         # Create labels for periods (rows) and groups (columns)
         self.create_labels()
@@ -41,6 +44,9 @@ class PeriodicTableApp(QWidget):
 
         self.setLayout(self.main_layout)
 
+        # Set initial scaling to avoid button overlapping
+        self.resizeEvent = self.on_resize  # Hook resize event to handle dynamic scaling
+
     def create_labels(self):
         """Create labels for groups (columns) and periods (rows) around the periodic table."""
         group_labels = ["Group " + str(i) for i in range(1, 19)]
@@ -62,8 +68,6 @@ class PeriodicTableApp(QWidget):
 
     def create_periodic_table(self):
         """Create buttons for each element in the periodic table layout."""
-        button_size = QSize(100, 100)  # Set a square size for buttons
-        
         for symbol, position in self.elements.elements.items():
             row, col = position
 
@@ -79,7 +83,6 @@ class PeriodicTableApp(QWidget):
 
             # Create the button for the element
             button = QPushButton(button_text)
-            button.setFixedSize(button_size)  # Ensure square buttons
             button.setStyleSheet(f"background-color: {color}; color: black;")
             button.setFont(QFont("Arial", 10, QFont.Bold))
 
@@ -92,11 +95,24 @@ class PeriodicTableApp(QWidget):
         # Add a gap row between the bottom two rows
         self.grid_layout.setRowMinimumHeight(8, 30)  # Gap row
 
-        # Make the grid layout scalable while maintaining aspect ratio
-        for i in range(1, 19):
-            self.grid_layout.setColumnStretch(i, 1)
-        for i in range(1, 10):
-            self.grid_layout.setRowStretch(i, 1)
+    def on_resize(self, event):
+        """Adjust button sizes and font based on window resizing."""
+        total_width = self.width()
+        total_height = self.height()
+
+        # Adjust button size based on window size
+        button_size = QSize(total_width // 25, total_height // 20)  # Dynamically calculate button size
+
+        for i in range(self.grid_layout.count()):
+            widget = self.grid_layout.itemAt(i).widget()
+            if isinstance(widget, QPushButton):
+                widget.setFixedSize(button_size)
+
+                # Adjust font size dynamically
+                font_size = max(button_size.height() // 6, 8)  # Ensure font size is not too small
+                widget.setFont(QFont("Arial", font_size))
+
+        event.accept()
 
     def show_element_details(self, symbol):
         """Shows detailed information about an element in the same window below the table."""
@@ -160,6 +176,8 @@ class PeriodicTableApp(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    dark_mode_manager = DarkModeManager()
+    dark_mode_manager.apply_palette()  # Apply the dark mode
     window = PeriodicTableApp()
     window.show()
     sys.exit(app.exec_())
